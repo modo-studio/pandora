@@ -1,6 +1,12 @@
 require "bundler/gem_tasks"
-require "rspec/core/rake_task"
+require 'rake/testtask'
 
-RSpec::Core::RakeTask.new(:spec)
+desc 'Execute pandora tests'
+Rake::TestTask.new(:test) do |t|
+  t.libs << 'lib' << 'test'
+  t.pattern = 'test/**/*_test.rb'
+  t.verbose = false
+end
 
-task :default => :spec
+desc 'Default: Execute tests'
+task default: :test
