@@ -1,0 +1,32 @@
+apps:
+  iOS:
+    project_path: "xxx.xcodeproj"
+    workspace_path: "xxx.xcworkspace"
+    target_name: "xxx"
+    test_target_name: "xxx"
+    dependencies:
+      - "Playback"
+      - "Search"
+  tvOS:
+    project_path: "xxx.xcodeproj"
+    workspace_path: "xxx.xcworkspace"
+    target_name: "xxx"
+    dependencies:
+      - "Playback"
+      - "Search"
+frameworks:
+  Core:
+    project_path: "Frameworks/Core/Core.xcodeproj"
+  UI:
+    project_path: "Frameworks/UI/UI.xcodeproj"
+  project_path:
+    project: "Frameworks/Playback/Playback.xcodeproj"
+    dependencies:
+      - "UI"
+      - "Core"
+  Search:
+    project_path: "Frameworks/Search/Search.xcodeproj"
+    dependencies:
+      - "UI"
+      - "Core"
+
