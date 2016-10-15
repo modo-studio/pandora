@@ -1,5 +1,4 @@
 require "pandora/version"
-
-module Pandora
-  # Your code goes here...
-end
+require "pandora/client/main"
+require "pandora/commands/commands"
+require "pandora/models/models"

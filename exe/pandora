@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "pandora"
+
+Pandora::Client::Main.start(ARGV)

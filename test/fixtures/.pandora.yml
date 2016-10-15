@@ -8,7 +8,7 @@ apps:
       - "Playback"
       - "Search"
   tvOS:
-    project_path: "xxx.xcodeproj"
+    project_path: xcodeproj"
     workspace_path: "xxx.xcworkspace"
     target_name: "xxx"
     dependencies:
@@ -20,7 +20,7 @@ frameworks:
   UI:
     project_path: "Frameworks/UI/UI.xcodeproj"
   project_path:
-    project: "Frameworks/Playback/Playback.xcodeproj"
+    project_path: "Frameworks/Playback/Playback.xcodeproj"
     dependencies:
       - "UI"
       - "Core"

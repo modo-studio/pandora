@@ -13,13 +13,26 @@ module Pandora
 
       # Initializes the framework from a YML hash.
       # @param [String] framework name.
-      # @param [Hash] hash that represents the framework.
-      def initialize(name, yml)
+      # @param [String] project path.
+      # @param [[String]] framework dependencies list.
+      # @return [Framework] initialized Framework.
+      def initialize(name, project_path, dependencies)
         @name = name
-        @project = yml[:project]
-        @dependencies = yml[:dependencies]
-        @dependencies ||= []
-        raise "Project not specified for framework #{@name}"
+        @project_path = project_path
+        @dependencies = dependencies
+      end
+
+      # Initializes a Framework from a YAML dictionary.
+      # @param [String] framework name.
+      # @param [Hash] dictionary that represents the framework
+      # @raise [StandardError] if the dictionary doesn't include a project_path
+      # @return [Framework] initialized Framework.
+      def self.from_yml(name, yml)
+        project_path = yml["project_path"]
+        raise "Project not specified for framework #{name}" unless project_path
+        dependencies = yml["dependencies"]
+        dependencies ||= []
+        Framework.new(name, project_path, dependencies)
       end
 
     end
