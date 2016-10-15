@@ -1,7 +1,7 @@
 require_relative '../test_helper'
 require 'yaml'
 
-describe "App" do
+describe "File" do
 
   describe "initialization" do
 
@@ -38,7 +38,7 @@ describe "App" do
           assert_equal @file.apps[1].name, "tvOS"
         end
         it "should have the correct project_path" do
-          assert_equal @file.apps[1].project_path, "xcodeproj"
+          assert_equal @file.apps[1].project_path, "asga.xcodeproj"
         end
         it "should have the correct workspace_path" do
           assert_equal @file.apps[1].workspace_path, "yyy.xcworkspace"

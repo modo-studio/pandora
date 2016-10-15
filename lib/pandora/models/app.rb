@@ -27,14 +27,18 @@ module Pandora
       # @param [String] application main target name.
       # @param [String] application main tests target name.
       # @param [String] dependencies.
+      # @raise [StandardError] if any of the attributes has a wrong format.
       # @return [App] initialized App.
       def initialize(name, project_path, workspace_path, target_name, test_target_name, dependencies)
         @name = name
         @project_path = project_path
+        raise "Wrong project path. It should be a .xcodeproj" unless @project_path.include?(".xcodeproj")
         @workspace_path = workspace_path
+        raise "Wrong workspace path. It should be a .xcworkspace" unless @workspace_path.include?(".xcworkspace")
         @target_name = target_name
         @test_target_name = test_target_name
         @dependencies = dependencies
+        raise "Dependencies must be an array" unless @dependencies.kind_of? Array
       end
 
       # Initializes an App from a YAML hash.

@@ -19,6 +19,7 @@ module Pandora
       def initialize(name, project_path, dependencies)
         @name = name
         @project_path = project_path
+        raise "Wrong project path. It should be a .xcodeproj" unless @project_path.include?(".xcodeproj")
         @dependencies = dependencies
       end
 
