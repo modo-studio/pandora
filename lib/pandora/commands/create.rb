@@ -9,9 +9,13 @@ module Pandora
 
       # Initializes the command with the framework that has to be created
       # @param [Framework] framework that the command should create.
+      # @param [Dir.class] Dir class.
+      # @param [File.class] File class.
       # @return [Create] initialized command.
-      def initialize(framework)
+      def initialize(framework, dir=Dir, file=File)
         @framework = framework
+        @dir = dir
+        @file = file
       end
 
       # Executes the command
