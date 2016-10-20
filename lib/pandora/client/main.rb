@@ -5,9 +5,9 @@ module Pandora
   module Client
     class Main < Thor
 
-      desc "create CORE", "create a CORE framework"
-      def create(name)
-        Pandora::Commands::Create.new(Dir.pwd, name).execute
+      desc "create CORE ORGANIZATION", "create a CORE framework"
+      def create(name, organization)
+        Pandora::Commands::Create.new(Dir.pwd, name, organization).execute
       end
 
       private

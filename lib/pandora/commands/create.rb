@@ -11,10 +11,12 @@ module Pandora
       # Initializes the command
       # @param [String] directory where the framework will be created.
       # @param [String] framework name.
+      # @param [String] framework organization.
       # @return [Create] initialized command.
-      def initialize(path, name)
+      def initialize(path, name, organization)
         @path = path
         @name = name
+        @organization = organization
         @url = "https://github.com/frameworkoriented/template/archive/master.zip"
       end
 
@@ -72,6 +74,7 @@ module Pandora
             .each do |file_path|
           text = File.read(file_path)
           new_contents = text.gsub("XXXXX", @name)
+          new_contents = new_contents.gsub("YYYYY", @organization)
           File.open(file_path, "w") {|file| file.puts new_contents }
         end
         puts "=> Contents renamed".colorize(:green)
