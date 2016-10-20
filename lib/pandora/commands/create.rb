@@ -56,7 +56,7 @@ module Pandora
 
       def rename_files(path)
         Dir[File.join(path, "*")].each do |file_path|
-          file_new_path = file_path.gsub("Cuca", @name)
+          file_new_path = file_path.gsub("XXXXX", @name)
           FileUtils.mv file_path, file_new_path if file_path != file_new_path
           if File.directory?(file_new_path)
             self.rename_files(file_new_path)
@@ -66,11 +66,11 @@ module Pandora
 
       def rename_files_content
         puts "=> Renaming files content".colorize(:green)
-        Dir[File.join(@path, "**/*")]
-        .select { |fn| !File.directory?(fn) }
-        .each do |file_path|
+        Dir[File.join(self.framework_path, "**/*")]
+            .select { |fn| !File.directory?(fn) }
+            .each do |file_path|
           text = File.read(file_path)
-          new_contents = text.gsub("Cuca", @name)
+          new_contents = text.gsub("XXXXX", @name)
           File.open(file_path, "w") {|file| file.puts new_contents }
         end
         puts "=> Contents renamed".colorize(:green)
