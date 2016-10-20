@@ -1,12 +1,10 @@
-sudo: false
 osx_image: xcode8
+sudo: false
 notifications:
   email: false
-language: ruby
+language: objective-c
 service_name: travis-pro
 repo_token: 9u4s2QLGYCvlB15SAqThI9eSY732ypUFz
-rvm:
-  - 2.3.0
 before_install: 
   gem install bundler;
   bundle install;
