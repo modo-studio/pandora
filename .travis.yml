@@ -3,6 +3,8 @@ sudo: false
 notifications:
   email: false
 language: objective-c
+rvm:
+  - 2.3.1
 service_name: travis-pro
 repo_token: 9u4s2QLGYCvlB15SAqThI9eSY732ypUFz
 before_install: 
