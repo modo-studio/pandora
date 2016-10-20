@@ -14,5 +14,6 @@ script:
   bundle exec rake;
   bundle exec exe/pandora create Cua org.test;
   cd Cua;
-  make lint;
+  make build;
+  make spec;
 
