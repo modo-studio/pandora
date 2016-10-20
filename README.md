@@ -5,9 +5,8 @@
 [![Gem Version](https://badge.fury.io/rb/pandora-frameworks.svg)](https://badge.fury.io/rb/pandora-frameworks)
 [![Inline docs](http://inch-ci.org/github/frameworkoriented/pandora.svg?branch=master)](http://www.rubydoc.info/github/framework-oriented/pandora/master)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pandora`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Pandora is a command line tool written in Ruby thought to make working with Frameworks easier.
+If you haven't heard about it before, we recommend you to check out [frameworkoriented.io](frameworkoriented.io)
 
 ## Installation
 
