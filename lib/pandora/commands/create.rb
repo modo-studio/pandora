@@ -2,6 +2,7 @@ require 'xcodeproj'
 require 'rest-client'
 require 'zip'
 require 'fileutils'
+require 'colorize'
 
 module Pandora
   module Commands
@@ -21,24 +22,26 @@ module Pandora
       def execute
         self.download_template
         self.unzip_template
-        self.rename_folders(self.framework_path)
-        self.rename_files
+        self.rename_files(self.framework_path)
+        self.rename_files_content
+        puts "Enjoy #{@name} FRAMEWORK! #yatusabes".colorize(:light_yellow)
+        system "open #{project_path}"
       end
 
       protected
 
       def download_template
-        puts "=> Downloading framework template"
+        puts "=> Downloading framework template".colorize(:green)
         response = RestClient.get(@url)
         File.delete(self.zip_path) if File.exist?(self.zip_path)
         zip_file = File.new(self.zip_path, "wb")
         zip_file << response.body
         zip_file.close
-        puts "=> Framework template downloaded"
+        puts "=> Framework template downloaded".colorize(:green)
       end
 
       def unzip_template
-        puts "=> Uncompressing template"
+        puts "=> Uncompressing template".colorize(:green)
         Zip::File.open(self.zip_path) do |zip_file|
           zip_file.each do |f|
             fpath = File.join(@path, f.name)
@@ -48,20 +51,21 @@ module Pandora
         FileUtils.remove(self.zip_path) if File.exist?(self.zip_path)
         FileUtils.remove_dir self.framework_path if File.exist?(self.framework_path)
         FileUtils.mv File.join(@path, "template-master"), self.framework_path
-        puts '=> Template uncompressed'
+        puts '=> Template uncompressed'.colorize(:green)
       end
 
-      def rename_folders(path)
+      def rename_files(path)
         Dir[File.join(path, "*")].each do |file_path|
           file_new_path = file_path.gsub("Cuca", @name)
           FileUtils.mv file_path, file_new_path if file_path != file_new_path
           if File.directory?(file_new_path)
-            self.rename_folders(file_new_path)
+            self.rename_files(file_new_path)
           end
         end
       end
 
-      def rename_files
+      def rename_files_content
+        puts "=> Renaming files content".colorize(:green)
         Dir[File.join(@path, "**/*")]
         .select { |fn| !File.directory?(fn) }
         .each do |file_path|
@@ -69,6 +73,11 @@ module Pandora
           new_contents = text.gsub("Cuca", @name)
           File.open(file_path, "w") {|file| file.puts new_contents }
         end
+        puts "=> Contents renamed".colorize(:green)
+      end
+
+      def project_path
+        File.join(self.framework_path, "#{@name}.xcworkspace")
       end
 
       def framework_path
