@@ -1,52 +1,82 @@
 require 'xcodeproj'
+require 'rest-client'
+require 'zip'
+require 'fileutils'
 
 module Pandora
   module Commands
     class Create
 
-      # Framework to be created
-      attr_reader :framework
-
-      # Initializes the command with the framework that has to be created
-      # @param [Framework] framework that the command should create.
-      # @param [Dir.class] Dir class.
-      # @param [File.class] File class.
+      # Initializes the command
+      # @param [String] directory where the framework will be created.
+      # @param [String] framework name.
       # @return [Create] initialized command.
-      def initialize(framework, dir=Dir, file=File)
-        @framework = framework
-        @dir = dir
-        @file = file
+      def initialize(path, name)
+        @path = path
+        @name = name
+        @url = "https://github.com/frameworkoriented/template/archive/master.zip"
       end
 
       # Executes the command
       def execute
-        self.create_folder
-        self.create_project
-        self.create_targets
-        self.setup_configuration
-        self.link_dependencies
+        self.download_template
+        self.unzip_template
+        self.rename_folders(self.framework_path)
+        self.rename_files
       end
 
-      private
+      protected
 
-      def create_folder
-        #TODO
+      def download_template
+        puts "=> Downloading framework template"
+        response = RestClient.get(@url)
+        File.delete(self.zip_path) if File.exist?(self.zip_path)
+        zip_file = File.new(self.zip_path, "wb")
+        zip_file << response.body
+        zip_file.close
+        puts "=> Framework template downloaded"
       end
 
-      def create_project
-        # TODO
+      def unzip_template
+        puts "=> Uncompressing template"
+        Zip::File.open(self.zip_path) do |zip_file|
+          zip_file.each do |f|
+            fpath = File.join(@path, f.name)
+            zip_file.extract(f, fpath) unless File.exist?(fpath)
+          end
+        end
+        FileUtils.remove(self.zip_path) if File.exist?(self.zip_path)
+        FileUtils.remove_dir self.framework_path if File.exist?(self.framework_path)
+        FileUtils.mv File.join(@path, "template-master"), self.framework_path
+        puts '=> Template uncompressed'
       end
 
-      def create_targets
-        # TODO
+      def rename_folders(path)
+        Dir[File.join(path, "*")].each do |file_path|
+          file_new_path = file_path.gsub("Cuca", @name)
+          FileUtils.mv file_path, file_new_path if file_path != file_new_path
+          if File.directory?(file_new_path)
+            self.rename_folders(file_new_path)
+          end
+        end
       end
 
-      def setup_configuration
-        # TODO
+      def rename_files
+        Dir[File.join(@path, "**/*")]
+        .select { |fn| !File.directory?(fn) }
+        .each do |file_path|
+          text = File.read(file_path)
+          new_contents = text.gsub("Cuca", @name)
+          File.open(file_path, "w") {|file| file.puts new_contents }
+        end
       end
 
-      def link_dependencies
-        # TODO
+      def framework_path
+        File.join(@path, "#{@name}")
+      end
+
+      def zip_path
+        File.join(@path, "#{@name}.zip")
       end
 
     end

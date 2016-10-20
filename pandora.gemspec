@@ -31,6 +31,8 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'git', '~> 1.3'
   spec.add_dependency 'xcodeproj', '~> 1.3'
+  spec.add_dependency "rest-client", '~> 2.0'
+  spec.add_dependency "rubyzip", "~> 1.2"
 
   spec.add_development_dependency 'maxitest', '~> 2.2'
   spec.add_development_dependency 'shoulda-context', "~> 1.2"
