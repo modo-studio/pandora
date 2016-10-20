@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/frameworkoriented/pandora.svg?branch=master)](https://travis-ci.org/frameworkoriented/pandora)
 [![Coverage Status](https://coveralls.io/repos/github/frameworkoriented/pandora/badge.svg)](https://coveralls.io/github/frameworkoriented/pandora)
 [![Gem Version](https://badge.fury.io/rb/pandora-frameworks.svg)](https://badge.fury.io/rb/pandora-frameworks)
+[![Inline docs](http://inch-ci.org/github/frameworkoriented/pandora.svg?branch=master)](http://www.rubydoc.info/github/framework-oriented/pandora/master)
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pandora`. To experiment with that code, run `bin/console` for an interactive prompt.
 
