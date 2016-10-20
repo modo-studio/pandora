@@ -1,5 +1,7 @@
 ![headers](assets/header.png)
 
+[![Build Status](https://travis-ci.org/frameworkoriented/pandora.svg?branch=master)](https://travis-ci.org/frameworkoriented/pandora)
+
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pandora`. To experiment with that code, run `bin/console` for an interactive prompt.
 
 TODO: Delete this and the text above, and describe your gem
@@ -27,8 +29,10 @@ Or install it yourself as:
 You can easily create a framework with the create command. It creates a framework project that includes an example project and an example playground:
 
 ```bash
-bash create NAME
+pandora create NAME
 ```
+
+![headers](assets/example.png)
 
 ## Development
 
