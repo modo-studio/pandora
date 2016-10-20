@@ -1,7 +1,18 @@
 sudo: false
+osx_image: xcode8
+notifications:
+  email: false
 language: ruby
 service_name: travis-pro
 repo_token: 9u4s2QLGYCvlB15SAqThI9eSY732ypUFz
 rvm:
   - 2.3.0
-before_install: gem install bundler -v 1.13.1
+before_install: 
+  gem install bundler -v 1.13.1
+  bundle install
+script:
+  bundle exec rake
+  bundle exec exe/pandora create Cua org.test
+  cd Cua
+  make lint
+
