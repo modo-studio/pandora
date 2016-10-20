@@ -31,7 +31,7 @@ Or install it yourself as:
 You can easily create a framework with the create command. It creates a framework project that includes an example project and an example playground:
 
 ```bash
-pandora create NAME
+pandora create NAME ORGANIZATION
 ```
 
 ![headers](assets/example.png)
