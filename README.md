@@ -18,11 +18,17 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install pandora
+    $ gem install pandora-frameworks
 
 ## Usage
 
-TODO: Write usage instructions here
+### Creating a framework
+
+You can easily create a framework with the create command. It creates a framework project that includes an example project and an example playground:
+
+```bash
+bash create NAME
+```
 
 ## Development
 

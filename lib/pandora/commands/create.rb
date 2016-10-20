@@ -25,6 +25,7 @@ module Pandora
         self.rename_files(self.framework_path)
         self.rename_files_content
         puts "Enjoy #{@name} FRAMEWORK! #yatusabes".colorize(:light_yellow)
+        system "pedropinerabuendia.xcuserdatad"
         system "open #{project_path}"
       end
 
