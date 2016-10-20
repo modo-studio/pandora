@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'pandora/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "pandora"
+  spec.name          = "pandora-frameworks"
   spec.version       = Pandora::VERSION
   spec.authors       = ["Pedro Piñera Buendía"]
   spec.email         = ["pepibumur@gmail.com"]
