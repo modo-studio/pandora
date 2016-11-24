@@ -56,7 +56,7 @@ module Pandora
         end
         FileUtils.remove(self.zip_path) if File.exist?(self.zip_path)
         FileUtils.remove_dir self.framework_path if File.exist?(self.framework_path)
-        FileUtils.mv File.join(@path, "template-master"), self.framework_path
+        FileUtils.mv File.join(@path, "pandora_framework_template-master"), self.framework_path
         puts '=> Template uncompressed'.colorize(:green) if @verbose
       end
 
